@@ -2,36 +2,45 @@
 #include <string>
 using namespace std;
 
-string caesar(string text, int shift) {
-    string result = "";
+class CaesarCipher {
+public:
+    string encrypt(string text, int shift) {
+        string result = "";
 
-    for (int i = 0; i < text.length(); i++) {
-        char ch = text[i];
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text[i];
 
-        if (ch >= 'a' && ch <= 'z') {
-            result += char(int('a' + (ch - 'a' + shift) % 26));
+            if (ch >= 'a' && ch <= 'z') {
+                result += char(int('a' + (ch - 'a' + shift) % 26));
+            } else if (ch >= 'A' && ch <= 'Z') {
+                result += char(int('A' + (ch - 'A' + shift) % 26));
+            } else {
+                result += ch; 
+            }
         }
- 
-        else if (ch >= 'A' && ch <= 'Z') {
-            result += char(int('A' + (ch - 'A' + shift) % 26));
-        }
+        return result;
     }
-    return result;
-}
+
+    string decrypt(string text, int shift) {
+        return encrypt(text, 26 - (shift % 26));  
+    }
+};
 
 int main() {
+    CaesarCipher cipher;
     string text;
     int shift;
 
-    
-    cout << "Input text:";
+    cout << "Input text: ";
     getline(cin, text);
-    cout << "Input number: ";
+    cout << "Input shift value: ";
     cin >> shift;
 
+    string encryptedText = cipher.encrypt(text, shift);
+    cout << "Encrypted text: " << encryptedText << endl;
 
-    string enText = caesar(text, shift);
-    cout << "Encrypted text: " << enText<<endl;
+    string decryptedText = cipher.decrypt(encryptedText, shift);
+    cout << "Decrypted text: " << decryptedText << endl;
 
     return 0;
 }
