@@ -5,7 +5,6 @@ using namespace std;
 class MissingNumberFinder {
 private:
     int n;
-
 public:
     MissingNumberFinder(int n) : n(n) {}
 
