@@ -3,8 +3,10 @@ using namespace std;
 
 class MathOperations {
 public:
-    
     int gcd(int a, int b) {
+        a = abs(a);
+        b = abs(b);
+
         while (b != 0) {
             int temp = b;
             b = a % b;
@@ -13,9 +15,8 @@ public:
         return a;
     }
 
-    
     int lcm(int a, int b) {
-        return (a * b) / gcd(a, b);
+        return (abs(a * b)) / gcd(a, b);
     }
 };
 
