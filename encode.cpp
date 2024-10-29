@@ -15,19 +15,7 @@ public:
         }
     }
 
-    void displayAlphabets() const {
-        cout << "Alphabet: ";
-        for (int i = 0; i < 26; i++) {
-            cout << alphabet[i] << " ";
-        }
-        cout << endl;
-
-        cout << "Reverse Alphabet: ";
-        for (int i = 0; i < 26; i++) {
-            cout << reverseAlphabet[i] << " ";
-        }
-        cout << endl;
-    }
+   
 
     string encode(const string& inputText) const {
         string encodedText = "";
@@ -38,8 +26,12 @@ public:
                 } else {
                     encodedText += tolower(reverseAlphabet[c - 'a']);  
                 }
-            } else {
-                encodedText += c; 
+            } 
+            else if (isdigit(c)) { 
+                encodedText += '9' - (c - '0');
+            } 
+            else { 
+                encodedText += static_cast<char>(c + 3);
             }
         }
         return encodedText;
@@ -54,8 +46,13 @@ public:
                 } else {
                     decodedText += tolower(alphabet['z' - c]);  
                 }
-            } else {
-                decodedText += c;  
+            } 
+            else if (isdigit(c)) { 
+               
+                decodedText += '9' - (c - '0');
+            } 
+            else { 
+                decodedText += static_cast<char>(c - 3);
             }
         }
         return decodedText;
@@ -65,7 +62,7 @@ public:
 int main() {
     Cipher cipher;
 
-    cipher.displayAlphabets();
+   
 
     string inputText;
     cout << "Input Text: ";
