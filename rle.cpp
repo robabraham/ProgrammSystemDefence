@@ -32,7 +32,7 @@ public:
             i++;
             int count = 0;
             while (i < n && isdigit(encoded[i])) {
-                count = count * 10 + (encoded[i] - '0'); // Փոխարկում ենք թիվ
+                count = count * 10 + (encoded[i] - '0'); 
                 i++;
             }
             i--; 
