@@ -14,15 +14,17 @@ public:
                 result += char(int('a' + (ch - 'a' + shift) % 26));
             } else if (ch >= 'A' && ch <= 'Z') {
                 result += char(int('A' + (ch - 'A' + shift) % 26));
+            } else if (ch >= '0' && ch <= '9') {
+                result += char(int('0' + (ch - '0' + shift) % 10));  
             } else {
-                result += ch; 
+                result += char(int(ch + shift) % 128);  
             }
         }
         return result;
     }
 
     string decrypt(string text, int shift) {
-        return encrypt(text, 26 - (shift % 26));  
+        return encrypt(text, -1*shift);  
     }
 };
 
