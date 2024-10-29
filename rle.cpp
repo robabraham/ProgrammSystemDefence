@@ -17,9 +17,28 @@ public:
                 count++;
                 i++;
             }
-            encoded += input[i] + to_string(count);
+            encoded += input[i]; 
+            encoded += to_string(count);
         }
         return encoded;
+    }
+
+    string decode(const string& encoded) {
+        string decoded = "";
+        int n = encoded.length();
+
+        for (int i = 0; i < n; i++) {
+            char ch = encoded[i]; 
+            i++;
+            int count = 0;
+            while (i < n && isdigit(encoded[i])) {
+                count = count * 10 + (encoded[i] - '0'); // Փոխարկում ենք թիվ
+                i++;
+            }
+            i--; 
+            decoded.append(count, ch); 
+        }
+        return decoded;
     }
 };
 
@@ -27,9 +46,13 @@ int main() {
     string input;
     cout << "Enter a string to encode: ";
     cin >> input;
-    RLE rle;
 
+    RLE rle;
     string encoded = rle.encode(input);
     cout << "Encoded string: " << encoded << endl;
+
+    string decoded = rle.decode(encoded);
+    cout << "Decoded string: " << decoded << endl;
+
     return 0;
 }
