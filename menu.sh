@@ -24,13 +24,11 @@ show_ip() {
     echo "IPv6 հասցեներ:"
     ifconfig | grep "inet6 " | awk '{print $2}'
 }
-
 # Ցանցային ճանապարհը (traceroute)
 network_path() {
     read -p "Մուտքագրեք hostname կամ URL: " hostname
     traceroute "$hostname"
 }
-
 # Ցույց տալ hostname-ի IP հասցեն
 hostname_to_ip() {
     read -p "Մուտքագրեք hostname կամ URL: " hostname
@@ -90,7 +88,6 @@ decompress_file() {
         echo "Սեղմված ֆայլը գոյություն չունի։"
     fi
 }
-
 # Հաշվել ֆայլի արժեքը (checksum)
 calculate_checksum() {
     read -p "Մուտքագրեք ֆայլի անունը: " file
